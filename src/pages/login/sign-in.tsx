@@ -53,7 +53,7 @@ const SignInPage = () => {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-500"
                 >
                   Email
                 </label>
@@ -72,7 +72,7 @@ const SignInPage = () => {
               <div className="mb-6">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-500"
                 >
                   Password
                 </label>
@@ -87,32 +87,25 @@ const SignInPage = () => {
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
-
-              <button
-                type="submit"
-                className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Submit
-              </button>
-              <div className="mt-4 text-center">
-                <Link
-                  href="/login/forgot-password"
-                  className="text-blue-500 hover:underline"
+              <div className="flex items-center justify-between">
+                <p className="mt-4 text-sm text-gray-600">
+                  Don't have an account?{" "}
+                  <Link
+                    href="/login/sign-up"
+                    className="btn-small font-bold text-gray-600 hover:underline"
+                  >
+                    Sign up
+                  </Link>
+                </p>
+                <button
+                  type="submit"
+                  className="w-1/3 bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Forgot password?
-                </Link>
+                  Login
+                </button>
               </div>
             </Form>
           </Formik>
-          <p className="mt-4 text-sm text-center text-gray-600">
-            Don't have an account?{" "}
-            <Link
-              href="/login/sign-up"
-              className="text-blue-500 hover:underline"
-            >
-              Sign up
-            </Link>
-          </p>
         </div>
         <p className="mt-8 text-center text-sm text-gray-400">
           © 2024 Circle. All Rights Reserved.
