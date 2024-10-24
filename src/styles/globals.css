@@ -24,6 +24,7 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #041643 0%, #0a2a6e 100%);
+  background-image: url("../../public/background-login.png");
 }
 
 .login-card {

@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -20,14 +20,45 @@ const validationSchema = Yup.object({
 
 const SignInPage = () => {
   const router = useRouter();
-  const publicValidation = (values: FormValues) => {
-    console.log(values);
-    router.push("/dashboard/home");
-  };
-  const [initialValues] = useState<FormValues>({
+
+  const initialValues: FormValues = {
     email: "",
     password: "",
-  });
+  };
+
+  const handleLogin = async (values: FormValues) => {
+    try {
+      const response = await fetch("http://localhost:8000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 401) {
+        toast.error("Invalid email or password", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        return;
+      }
+
+      if (!response.ok || !data.access_token) {
+        toast.error("An error occurred");
+        return;
+      }
+
+      localStorage.setItem("token", data.access_token);
+      router.push("/dashboard/home");
+    } catch (err) {
+      toast.error("Error connecting to the server");
+      console.error("Login error:", err);
+    }
+  };
 
   return (
     <div className="login-container">
@@ -46,8 +77,7 @@ const SignInPage = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={publicValidation}
-            enableReinitialize
+            onSubmit={handleLogin}
           >
             <Form>
               <div className="mb-4">
