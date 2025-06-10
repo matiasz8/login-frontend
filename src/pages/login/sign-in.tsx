@@ -61,85 +61,102 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="max-w-md w-full">
-        <div className="mb-8">
-          <div className="flex items-center mb-4">
-            <div className="w-8 h-8 bg-blue-500 rounded-full mr-2"></div>
-            <h1 className="text-2xl font-bold text-white">circles</h1>
+    <div className="min-h-screen bg-navy-900 flex items-center justify-center p-4">
+      {/* background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* principal container */}
+      <div className="w-full max-w-6xl flex items-center justify-between relative">
+        {/* left side */}
+        <div className="w-full max-w-md text-white p-8">
+          <div className="flex items-center gap-2 mb-12">
+            <div className="w-6 h-6 border-2 border-blue-500 rounded-full"></div>
+            <span className="text-xl font-semibold">circles</span>
           </div>
-          <h2 className="text-3xl font-bold text-white mb-2">
-            Login into your account
-          </h2>
-          <p className="text-blue-200">Let us make the circle bigger!</p>
+
+          <h1 className="text-4xl font-bold mb-4">
+            Login into
+            <br />
+            your account
+          </h1>
+          <p className="text-gray-400">Let us make the circle bigger!</p>
         </div>
-        <div className="login-card">
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleLogin}
-          >
-            <Form>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-500"
-                >
-                  Email
-                </label>
-                <Field
-                  name="email"
-                  type="email"
-                  placeholder="jane.doe@mail.com"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-700"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-500"
-                >
-                  Password
-                </label>
-                <Field
-                  name="password"
-                  type="password"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-700"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="text-red-500 text-sm mt-1"
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="mt-4 text-sm text-gray-600">
-                  Don't have an account?{" "}
-                  <Link
-                    href="/login/sign-up"
-                    className="btn-small font-bold text-gray-600 hover:underline"
+
+        {/* right side */}
+        <div className="w-full max-w-md">
+          <div className="bg-white login-card rounded-2xl p-8 shadow-xl">
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleLogin}
+            >
+              <Form>
+                <div className="mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-500"
                   >
-                    Sign up
-                  </Link>
-                </p>
-                <button
-                  type="submit"
-                  className="w-1/3 bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Login
-                </button>
-              </div>
-            </Form>
-          </Formik>
+                    Email
+                  </label>
+                  <Field
+                    name="email"
+                    type="email"
+                    placeholder="jane.doe@mail.com"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-700"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                <div className="mb-6">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-500"
+                  >
+                    Password
+                  </label>
+                  <Field
+                    name="password"
+                    type="password"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-700"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="mt-4 text-sm text-gray-600">
+                    Don't have an account?{" "}
+                    <Link
+                      href="/login/sign-up"
+                      className="btn-small font-bold text-gray-600 hover:underline"
+                    >
+                      Sign up
+                    </Link>
+                  </p>
+                  <button
+                    type="submit"
+                    className="w-1/3 bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Login
+                  </button>
+                </div>
+              </Form>
+            </Formik>
+          </div>
         </div>
-        <p className="mt-8 text-center text-sm text-gray-400">
-          © 2024 Circle. All Rights Reserved.
-        </p>
+      </div>
+
+      {/* Footer */}
+      <div className="absolute bottom-4 text-gray-400 text-sm">
+        © 2024 Circle. All Rights Reserved.
       </div>
     </div>
   );

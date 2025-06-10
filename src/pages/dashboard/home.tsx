@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function Home() {
+const DashboardHome = () => {
   const router = useRouter();
   const handleLogout = () => {
     localStorage.removeItem("token");
     router.push("/login/sign-in");
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login/sign-in");
+    }
+  }, [router]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-600">
@@ -23,4 +30,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default DashboardHome;
